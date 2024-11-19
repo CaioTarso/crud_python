@@ -1,10 +1,14 @@
+from dotenv import load_dotenv
+import os
 import mysql.connector
 
+load_dotenv()
+
 conexao = mysql.connector.connect(
-    host='localhost',
-    user='root',
-    password ='',
-    database='bd_crud_py'
+    host=os.getenv('DB_HOST'),
+    user=os.getenv('DB_USER'),
+    password=os.getenv('DB_PASSWORD'),
+    database=os.getenv('DB_NAME')
 )
 
 cursor = conexao.cursor()
@@ -27,11 +31,11 @@ resultado = cursor.fetchall() # ler o banco
 print(resultado)'''
 
 # UPDATE
-nome_produto = "toddynho"
-valor = 7
-comando = f'UPDATE vendas SET valor = {valor}  WHERE nome_produto = "{nome_produto}"'
+'''idVendas = 3
+valor = 9
+comando = f'UPDATE vendas SET valor = {valor}  WHERE idVendas = {idVendas}'
 cursor.execute(comando)
-conexao.commit()
+conexao.commit()'''
 
 # DELEATE
 '''nome_produto = "toddynho"
